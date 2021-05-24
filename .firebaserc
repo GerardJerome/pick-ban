@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "wantedpickandban": {
+      "hosting": {
+        "pickBan": [
+          "wantedpickandban"
+        ]
+      }
+    }
+  }
+}

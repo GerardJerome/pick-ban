@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ListResult } from '@angular/fire/storage/interfaces';
+
+
 
 @Component({
   selector: 'app-map-shower',
@@ -6,17 +11,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map-shower.component.css']
 })
 export class MapShowerComponent implements OnInit {
-  listPath : Array<String> = Array()
+  item$: Promise<ListResult>;
 
-  constructor() { }
+
+  constructor(firestorage : AngularFireStorage) {
+    this.item$ = firestorage.storage.ref("notCrossed").listAll()
+    this.item$.then((test)=>{
+      
+      console.log(test.items)
+    })
+   }
 
   ngOnInit(): void {
-    this.listPath.push("assets/NorthernCave.jpg")
-    this.listPath.push("assets/smashVille.jpg")
   }
 
-  changePath(path : String){
-    this.listPath[this.listPath.indexOf(path)]="assets/pouce.jpg"
-  }
   
 }
